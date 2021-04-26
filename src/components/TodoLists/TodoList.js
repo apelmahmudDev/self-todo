@@ -6,6 +6,7 @@ function TodoList() {
     { name: "Programming", id: 1 },
     { name: "Study", id: 2 },
     { name: "Play", id: 3 },
+    { name: "Riding a By-cycle", id: 3 },
   ]);
   return (
     <div className="todo_list">
