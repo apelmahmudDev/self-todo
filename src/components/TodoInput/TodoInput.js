@@ -1,14 +1,16 @@
 import React, { useContext, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { TodoContext } from "../../contexts/TodoContext";
 
 const TodoInput = () => {
-  const { todos, setTodos } = useContext(TodoContext);
+  const { dispatch } = useContext(TodoContext);
   const [task, setTask] = useState("");
 
   const AddNewTask = (e) => {
     e.preventDefault();
-    setTodos([...todos, { task: task, id: uuidv4() }]);
+    dispatch({
+      type: "ADD_NEW_TASK",
+      task,
+    });
     setTask("");
   };
 

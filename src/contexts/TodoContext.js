@@ -1,16 +1,20 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useReducer, useState } from "react";
+import { todoReducer } from "../reducers/todoReducer";
 
 export const TodoContext = createContext();
 
 const TodoContextProvider = ({ children }) => {
-  const [todos, setTodos] = useState([
-    { task: "Programming", id: 1 },
-    { task: "Study", id: 2 },
-    { task: "Play", id: 3 },
-    { task: "Riding a By-cycle", id: 4 },
-  ]);
+  const [state, dispatch] = useReducer(todoReducer, [], () => {
+    const localData = localStorage.getItem("myTodos");
+    return localData ? JSON.parse(localData) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem("myTodos", JSON.stringify(state));
+  }, [state]);
+
   return (
-    <TodoContext.Provider value={{ todos, setTodos }}>
+    <TodoContext.Provider value={{ state, dispatch }}>
       {children}
     </TodoContext.Provider>
   );

@@ -3,21 +3,16 @@ import { TodoContext } from "../../contexts/TodoContext";
 import TodoDetails from "../TodoDetails/TodoDetails";
 
 const TodoList = () => {
-  const { todos, setTodos } = useContext(TodoContext);
-
-  const taskRemove = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
-
+  const { state, dispatch } = useContext(TodoContext);
   return (
     <div className="todo_list">
       <ul>
-        {todos.map((todo) => (
+        {state.map((todo) => (
           <TodoDetails
             todo={todo.task}
             id={todo.id}
             key={todo.id}
-            taskRemove={taskRemove}
+            dispatch={dispatch}
           />
         ))}
       </ul>
