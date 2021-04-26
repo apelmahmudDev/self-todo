@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { TodoContext } from "../../contexts/TodoContext";
 import TodoDetails from "../TodoDetails/TodoDetails";
 
-function TodoList() {
-  const [todos, setTodos] = useState([
-    { name: "Programming", id: 1 },
-    { name: "Study", id: 2 },
-    { name: "Play", id: 3 },
-    { name: "Riding a By-cycle", id: 3 },
-  ]);
+const TodoList = () => {
+  const { todos, setTodos } = useContext(TodoContext);
+
+  const taskRemove = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <div className="todo_list">
       <ul>
         {todos.map((todo) => (
-          <TodoDetails todo={todo.name} key={todo.id} />
+          <TodoDetails
+            todo={todo.task}
+            id={todo.id}
+            key={todo.id}
+            taskRemove={taskRemove}
+          />
         ))}
       </ul>
     </div>
   );
-}
+};
 
 export default TodoList;

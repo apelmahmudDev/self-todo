@@ -3,7 +3,7 @@ import TodoHeader from "../TodoHeader/TodoHeader";
 import TodoInput from "../TodoInput/TodoInput";
 import TodoList from "../TodoLists/TodoList";
 
-function TodoContainer() {
+const TodoContainer = () => {
   return (
     <div className="todo_contaier">
       <TodoHeader />
@@ -11,6 +11,6 @@ function TodoContainer() {
       <TodoInput />
     </div>
   );
-}
+};
 
 export default TodoContainer;

@@ -1,12 +1,12 @@
 import React from "react";
 
-function TodoDetails({ todo }) {
+const TodoDetails = ({ todo, id, taskRemove }) => {
   return (
-    <li className="todo_details">
+    <li onClick={() => taskRemove(id)} className="todo_details">
       <input type="checkbox" />
       {todo}
     </li>
   );
-}
+};
 
 export default TodoDetails;
